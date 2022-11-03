@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 
 export default function Profile() {
-  const { setUser } = useAuth();
+  const { setUser, user } = useAuth();
 
   const logOutHandle = () => {
     setUser(false);
@@ -9,7 +10,8 @@ export default function Profile() {
 
   return (
     <div>
-      <button onClick={logOutHandle}>Çıkış Yap</button>
+      {user && <button onClick={logOutHandle}>Çıkış Yap</button>}
+      {!user && <Link to="/auth/login">Giriş Yap</Link>}
     </div>
   );
 }
